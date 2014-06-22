@@ -3,7 +3,10 @@ MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
 
 # Install packages
 RUN apt-get update
+RUN mv /usr/sbin/adduser /usr/sbin/adduser.original && cp /usr/sbin/useradd /usr/sbin/adduser
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server pwgen
+RUN mv /usr/sbin/adduser.original /usr/sbin/adduser
+
 
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
